@@ -17,5 +17,11 @@
         "nombre": "Teclado Redragon",
         "precio": 35000,
         "stock": 8
+    },
+    {
+        "id": 4,
+        "nombre": "Pantalla HP",
+        "precio": 350000,
+        "stock": 100
     }
 ]

@@ -1,15 +1,37 @@
 <?php
 
+use Illuminate\Http\Request;
 namespace App\Http\Controllers;
 // Importando el modelo...
 use App\Models\Producto;
 
-class ProductoController extends Controller
-{
-    public function index()
-    {
+class ProductoController extends Controller{
+    public function index(){
         $productos = Producto::obtenerTodos();
 
         return view('productos', compact('productos'));
+    }
+
+    // Mostrar formulario de creación
+    public function formulario_crear(){
+        return view('create');
+    }
+
+    // Guardar nuevo producto
+    public function crear_registro(Request $request){
+        // Validar los datos recibidos
+        $datos = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'precio' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0'
+        ]);
+
+        // Crear el producto mediante el modelo
+        Producto::crear($datos);
+
+        // Redireccionar con mensaje de éxito
+        return redirect()
+            ->route('create')
+            ->with('success', 'Producto creado correctamente.');
     }
 }
