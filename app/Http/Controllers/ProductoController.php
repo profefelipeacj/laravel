@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 // Importando el modelo...
 use App\Models\Producto;
 
@@ -31,7 +32,7 @@ class ProductoController extends Controller{
 
         // Redireccionar con mensaje de éxito
         return redirect()
-            ->route('create')
+            ->route('productos.formulario_crear')
             ->with('success', 'Producto creado correctamente.');
     }
 }

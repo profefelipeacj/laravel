@@ -1,4 +1,3 @@
-
 [
     {
         "id": 1,
@@ -23,5 +22,17 @@
         "nombre": "Pantalla HP",
         "precio": 350000,
         "stock": 100
+    },
+    {
+        "id": 5,
+        "nombre": "CELULAR HONOR",
+        "precio": "50000",
+        "stock": "20"
+    },
+    {
+        "id": 6,
+        "nombre": "CELULAR HONOR",
+        "precio": "50000",
+        "stock": "20"
     }
 ]
