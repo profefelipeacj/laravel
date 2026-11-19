@@ -7,7 +7,7 @@
 <body>
 
     <h1>Listado de productos</h1>
-
+    <a href="{{ route('productos.formulario_crear') }}"> Crear Producto</a>
     <table border="1" cellpadding="10">
         <thead>
             <tr>
@@ -15,6 +15,7 @@
                 <th>Producto</th>
                 <th>Precio</th>
                 <th>Stock</th>
+                <th>Acción</th>
             </tr>
         </thead>
 
@@ -25,6 +26,16 @@
                     <td>{{ $producto->nombre }}</td>
                     <td>${{ number_format($producto->precio, 0, ',', '.') }}</td>
                     <td>{{ $producto->stock }}</td>
+                    <td>
+                        <form action="{{ route('productos.eliminar_registro', $producto->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este producto?')">
+                                Eliminar
+                            </button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

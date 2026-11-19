@@ -22,3 +22,7 @@ Route::get('/productos/create', [ProductoController::class, 'formulario_crear'])
 // Guardar producto
 Route::post('/productos', [ProductoController::class, 'crear_registro'])
     ->name('productos.crear_registro');
+
+// Eliminar producto
+Route::delete('/productos/{id}', [ProductoController::class, 'eliminar_registro'])
+    ->name('productos.eliminar_registro');

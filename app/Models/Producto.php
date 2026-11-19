@@ -50,4 +50,30 @@ public static function crear($datos){
     return $nuevoProducto;
 }
 
+public static function eliminar($id){
+
+    // Obtener todos los productos
+    $productos = self::obtenerTodos();
+
+    // Filtrar los productos, dejando todos menos el que tenga ese ID
+    $productosFiltrados = array_filter($productos, function($producto) use ($id) {
+        return $producto->id != $id; // 6 != 6 ---- Lo descarta
+    });
+
+    // Reorganizar los índices del arreglo
+    $productosFiltrados = array_values($productosFiltrados);
+
+    // Guardar nuevamente el JSON
+    file_put_contents(
+        database_path('productos.json'),
+        json_encode(
+            $productosFiltrados,
+            JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+        ),
+        LOCK_EX
+    );
+
+    return true;
+}
+
 }

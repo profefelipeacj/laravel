@@ -35,4 +35,11 @@ class ProductoController extends Controller{
             ->route('productos.formulario_crear')
             ->with('success', 'Producto creado correctamente.');
     }
+
+    public function eliminar_registro($id){
+
+        Producto::eliminar($id);
+
+        return redirect()->back();
+    }
 }
