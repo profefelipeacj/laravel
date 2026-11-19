@@ -76,4 +76,58 @@ public static function eliminar($id){
     return true;
 }
 
+// Obtener un producto por su ID
+public static function obtenerPorId($id){
+
+    $productos = self::obtenerTodos();
+
+    foreach ($productos as $producto) {
+
+        if ($producto->id == $id) {
+            return $producto;
+        }
+    }
+
+    return null;
+}
+
+
+// Actualizar un producto
+public static function actualizar($id, $datos){
+
+    $productos = self::obtenerTodos();
+
+    $encontrado = false;
+
+    foreach ($productos as $producto) {
+
+        if ($producto->id == $id) {
+
+            $producto->nombre = $datos['nombre'];
+            $producto->precio = $datos['precio'];
+            $producto->stock = $datos['stock'];
+
+            $encontrado = true;
+            break;
+        }
+    }
+
+    // Si no existe el producto, no guardamos
+    if (!$encontrado) {
+        return false;
+    }
+
+    // Guardar los cambios en el JSON
+    file_put_contents(
+        database_path('productos.json'),
+        json_encode(
+            $productos,
+            JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+        ),
+        LOCK_EX
+    );
+
+    return true;
+}
+
 }

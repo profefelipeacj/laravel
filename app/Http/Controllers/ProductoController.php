@@ -42,4 +42,39 @@ class ProductoController extends Controller{
 
         return redirect()->back();
     }
+
+    public function formulario_editar($id){
+
+        // Buscar el producto por ID
+        $producto = Producto::obtenerPorId($id);
+
+        // Si no existe, mostrar error 404
+        if (!$producto) {
+            abort(404);
+        }
+
+        // Abrir la vista de edición
+        return view('editar', compact('producto'));
+    }
+
+    public function actualizar_registro(Request $request, $id){
+
+        // Validar los campos
+        $datos = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'precio' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0'
+        ]);
+
+        // Actualizar el producto
+        $actualizado = Producto::actualizar($id, $datos);
+
+        if (!$actualizado) {
+            abort(404);
+        }
+
+        // Volver al listado
+        return redirect()->route('productos.listado')
+            ->with('success', 'Producto actualizado correctamente');
+    }
 }

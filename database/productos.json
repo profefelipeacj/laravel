@@ -8,8 +8,8 @@
     {
         "id": 3,
         "nombre": "Teclado Redragon",
-        "precio": 35000,
-        "stock": 8
+        "precio": "55000",
+        "stock": "8"
     },
     {
         "id": 4,
@@ -26,7 +26,7 @@
     {
         "id": 8,
         "nombre": "MP4",
-        "precio": "45000",
-        "stock": "60"
+        "precio": "40000",
+        "stock": "35"
     }
 ]

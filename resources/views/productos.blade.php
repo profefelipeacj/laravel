@@ -27,6 +27,9 @@
                     <td>${{ number_format($producto->precio, 0, ',', '.') }}</td>
                     <td>{{ $producto->stock }}</td>
                     <td>
+                        <a href="{{ route('productos.formulario_editar', $producto->id) }}">
+                            <button type="button">Editar</button>
+                        </a>
                         <form action="{{ route('productos.eliminar_registro', $producto->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
